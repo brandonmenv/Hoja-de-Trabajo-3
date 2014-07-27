@@ -1,6 +1,7 @@
 
+
 /**
-   * @Estructura de Datos.java  1.0 25/07/2014
+   * @ListaNumeros.java  1.0 25/07/2014
    *
    * Universidad del Valle de Guatemala.
    * Seccion: 30 Estructura de Datos
@@ -14,91 +15,83 @@
    */
 
 
-import java.io.*;
-
-
-public class EstructuraDeDatos {
-	/*Atributos de la clase*/
-	private ListaNumeros array;
+public class ListaNumeros implements Comparable{
+	//Atributos
+	private String tipo, dimension;
+	private Integer[] arrayNumeros;
+	
 	
 	/*
 	 * Constructor de la clase
 	 */
-	public EstructuraDeDatos(){
-    	array=new ListaNumeros();
-    	guardaEnLista();										//Se guardan los numeros en la lista      	
-        
-	}
-	
-	/**
-	 * Metodo que ordena los 2000 numeros dependiendo
-	 * del ordenamiento que se le indique en el parametro.
-	 * @param ordenamiento
-	 */
-	public void muestraOrdenamiento(String ordenamiento){
-	   	if(ordenamiento=="insertion"){
-	    	System.out.println("/********************************************************/");
-			System.out.println("Los numeros se ordenaron con el algoritmo de Insertion: \n");	
-	    	System.out.println("/********************************************************/");	
-	    	Sorting.insertionSort(array.getArrayNumeros());						//Ordenandolos con el algoritmo de sorting
-			for(Integer i : array.getArrayNumeros())							//Imprimiendo numeros ordenados
-				System.out.println(i);
-		}else{
-			if(ordenamiento=="bubble"){									
-		    	System.out.println("/********************************************************/");
-				System.out.println("Los numeros se ordenaron con el algoritmo de Bubble: \n");	
-		    	System.out.println("/********************************************************/");	
-				Sorting.BubbleSort(array.getArrayNumeros());					//Se ordenan con el algoritmo de bubble
-				for(Integer i : array.getArrayNumeros())						//Imprimiendo numeros ordenados
-					System.out.println(i);
-			}else{				
-				if(ordenamiento=="merge"){
-			    	System.out.println("/********************************************************/");
-					System.out.println("Los numeros se ordenaron con el algoritmo de Merge: \n");	
-			    	System.out.println("/********************************************************/");	
-					Sorting.sort(array.getArrayNumeros());					//Se ordenan con el algoritmo de bubble
-					for(Integer i : array.getArrayNumeros())						//Imprimiendo numeros ordenados
-						System.out.println(i);
-				}else{
-					if(ordenamiento=="quick"){
-				    	System.out.println("/********************************************************/");
-						System.out.println("Los numeros se ordenaron con el algoritmo de Quick: \n");	
-				    	System.out.println("/********************************************************/");	
-						
-				    	
-				    	Sorting.quickSort(array.getArrayNumeros(), 0, array.getArrayNumeros().length-1);					//Se ordenan con el algoritmo de bubble
-						for(Integer i : array.getArrayNumeros())						//Imprimiendo numeros ordenados
-							System.out.println(i);
-					}else{	
-					}
-				}
-			}		
-		}			
+	public ListaNumeros(){
+		arrayNumeros=new Integer[2000];			//Se crea el array de Integers		
 	}
 	
 	
 	/*
-	 * Metodo que guarda en una lista los numeros aleatorios generados
+	 * SETS Y GETS de la clase
 	 */
-	public void guardaEnLista(){
-		String linea = "";														//String que tendra c/linea												
-		File archivo = new File("Numeros.txt");									//se crea el archivo a leer
-		  
-		try {
-			FileReader leerArchivo = new FileReader(archivo);					//Se crea al lector
-			BufferedReader buffer = new BufferedReader(leerArchivo);			//Se crea el buffer
-			int contador=0;														//Contador para saber la posicion de la lista
-			
-			while ((linea = buffer.readLine()) != null){						//Se lee sin los "enter"						
-				array.getArrayNumeros()[contador]=Integer.parseInt(linea);
-
-				contador++;														//Se le suma al contador
-			}
-			buffer.close();														//Se cierra el buffer
-		}catch (Exception ex){
-		}	
-		
-		
+	public String getTipo() {
+		return tipo;
 	}
+
+	public void setFirstName(String firstName) {
+		this.tipo = firstName;
+	}
+
+	public String getDimension() {
+		return dimension;
+	}
+
+	public void setDimension(String lastName) {
+		this.dimension = lastName;
+	}
+
+	
+	public Integer[] getArrayNumeros() {
+		return arrayNumeros;
+	}
+
+
+	public void setArrayNumeros(Integer[] arrayNumeros) {
+		this.arrayNumeros = arrayNumeros;
+	}
+
+
+/*
+	 * Metodo que da la descripcion del tipo y 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+   public boolean equals (Object other)
+   {
+      return (dimension.equals(((ListaNumeros)other).getDimension()) &&
+              tipo.equals(((ListaNumeros)other).getTipo()));
+   }
+   
+   
+   /*
+    * Metodo que mira el tipo de numero y tipo de ___ para ordenarlos de esta otra forma
+    * OJO QUE ES UN AGREGADO YA QUE TAMBIEN SE ENCUENTRAN LOS
+    * 4 METODOS DE ORDENAMIENTO.
+    * @see java.lang.Comparable#compareTo(java.lang.Object)
+    */
+   public int compareTo (Object other)
+   {
+      int result;
+
+      String otherFirst = ((ListaNumeros)other).getTipo();
+      String otherLast = ((ListaNumeros)other).getDimension();
+
+      if (dimension.equals(otherLast))
+         result = tipo.compareTo(otherFirst);
+      else
+         result = dimension.compareTo(otherLast);
+
+      return result;
+   }
+	   
+	
+	
 	
 }
