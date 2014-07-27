@@ -1,7 +1,23 @@
 
+
+/**
+   * @ListaNumeros.java  1.0 25/07/2014
+   *
+   * Universidad del Valle de Guatemala.
+   * Seccion: 30 Estructura de Datos
+   * @author Brandon Mendez Carnet: 13087
+   * @author Javier Bucaro: 13033
+   * @author Samuel Maldonado: 13153
+   * @author Ricardo Franco: 13261
+   * ListaNumero: Lista de numeros generados por Texto.java
+   * 
+   *
+   */
+
+
 public class ListaNumeros implements Comparable{
 	//Atributos
-	private String firstName, lastName;
+	private String tipo, dimension;
 	private Integer[] arrayNumeros;
 	
 	
@@ -16,20 +32,20 @@ public class ListaNumeros implements Comparable{
 	/*
 	 * SETS Y GETS de la clase
 	 */
-	public String getFirstName() {
-		return firstName;
+	public String getTipo() {
+		return tipo;
 	}
 
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		this.tipo = firstName;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getDimension() {
+		return dimension;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setDimension(String lastName) {
+		this.dimension = lastName;
 	}
 
 	
@@ -49,8 +65,8 @@ public class ListaNumeros implements Comparable{
 	 */
    public boolean equals (Object other)
    {
-      return (lastName.equals(((ListaNumeros)other).getLastName()) &&
-              firstName.equals(((ListaNumeros)other).getFirstName()));
+      return (dimension.equals(((ListaNumeros)other).getDimension()) &&
+              tipo.equals(((ListaNumeros)other).getTipo()));
    }
    
    
@@ -64,13 +80,13 @@ public class ListaNumeros implements Comparable{
    {
       int result;
 
-      String otherFirst = ((ListaNumeros)other).getFirstName();
-      String otherLast = ((ListaNumeros)other).getLastName();
+      String otherFirst = ((ListaNumeros)other).getTipo();
+      String otherLast = ((ListaNumeros)other).getDimension();
 
-      if (lastName.equals(otherLast))
-         result = firstName.compareTo(otherFirst);
+      if (dimension.equals(otherLast))
+         result = tipo.compareTo(otherFirst);
       else
-         result = lastName.compareTo(otherLast);
+         result = dimension.compareTo(otherLast);
 
       return result;
    }
